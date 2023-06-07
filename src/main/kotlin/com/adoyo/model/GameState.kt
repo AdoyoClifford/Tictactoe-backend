@@ -7,7 +7,7 @@ data class GameState(
     val playerAtTurn: Char? = 'X',
     val filed: Array<Array<Char?>> = emptyField(),
     val winningPlayer:Char? = null,
-    val isBoardFull: Boolean,
+    val isBoardFull: Boolean = false,
     val connectedPlayer: List<Char> = emptyList()
 
 ) {
