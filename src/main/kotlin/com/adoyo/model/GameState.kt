@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GameState(
     val playerAtTurn: Char? = 'X',
-    val filed: Array<Array<Char?>> = emptyField(),
+    val field: Array<Array<Char?>> = emptyField(),
     val winningPlayer:Char? = null,
     val isBoardFull: Boolean = false,
-    val connectedPlayer: List<Char> = emptyList()
+    val connectedPlayers: List<Char> = emptyList()
 
 ) {
     companion object {
@@ -28,14 +28,14 @@ data class GameState(
         other as GameState
 
         if (playerAtTurn != other.playerAtTurn) return false
-        if (!filed.contentDeepEquals(other.filed)) return false
+        if (!field.contentDeepEquals(other.field)) return false
         if (winningPlayer != other.winningPlayer) return false
         return isBoardFull == other.isBoardFull
     }
 
     override fun hashCode(): Int {
         var result = playerAtTurn?.hashCode() ?: 0
-        result = 31 * result + filed.contentDeepHashCode()
+        result = 31 * result + field.contentDeepHashCode()
         result = 31 * result + (winningPlayer?.hashCode() ?: 0)
         result = 31 * result + isBoardFull.hashCode()
         return result
