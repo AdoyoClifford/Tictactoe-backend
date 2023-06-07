@@ -1,10 +1,14 @@
 package com.adoyo.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class GameState(
     val playerAtTurn: Char? = 'X',
     val filed: Array<Array<Char?>> = emptyField(),
-    val winningPlayer:Char? = null
+    val winningPlayer:Char? = null,
     val isBoardFull: Boolean,
+    val connectedPlayer: List<Char> = emptyList()
 
 ) {
     companion object {
