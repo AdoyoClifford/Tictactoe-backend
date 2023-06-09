@@ -1,5 +1,6 @@
 package com.adoyo
 
+import com.adoyo.model.TicTacToeGame
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.server.testing.*
@@ -10,8 +11,9 @@ import com.adoyo.plugins.*
 class ApplicationTest {
     @Test
     fun testRoot() = testApplication {
+        val game = TicTacToeGame()
         application {
-            configureRouting()
+            configureRouting(game)
         }
         client.get("/").apply {
             assertEquals(HttpStatusCode.OK, status)
