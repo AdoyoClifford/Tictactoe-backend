@@ -16,11 +16,14 @@ fun Route.socket(game: TicTacToeGame) {
 
             if (player == null) {
                 close(CloseReason(CloseReason.Codes.CANNOT_ACCEPT,"two players already connected"))
+                return@webSocket
             }
 
             try {
                 incoming.consumeEach {frame ->
                     if (frame is Frame.Text) {
+                        val action  = extractAction(frame.readText())
+                        game.finishTurn(player, action.x, action.y)
 
                     }
                 }
